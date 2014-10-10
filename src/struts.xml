@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+<constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+<constant name="struts.devMode" value="true"/>
+    <package name="basePackage" namespace="/" extends="struts-default">
+    
+     <interceptors> <!-- 自定义拦截器 -->      
+         <interceptor name="permission" class="com.interceptor.SessionIterceptor" /> <!-- 配制默许的拦截器到拦截器栈 -->    
+           <interceptor-stack name="permissionStack"><!-- 此处先后顺序好像没影响哦，我尝试过是没影响的 -->   
+              <interceptor-ref name="permission" />  
+              <interceptor-ref name="defaultStack" />  
+           </interceptor-stack> 
+     </interceptors> 
+          <!-- 配置默认的拦截器 -->
+       <default-interceptor-ref name="permissionStack" />
+            <!-- 定义全局Result -->   
+        <global-results>   
+            <!-- 当返回login视图名时，转入/login.jsp页面 -->   
+            <result name="login" type="redirect">timeout.jsp</result>   
+        </global-results> 
+    </package>
+
+   
+
+</struts>

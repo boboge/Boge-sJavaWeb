@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+.tableForm{
+	
+}
+
+.tableForm th{
+	text-align: right;
+	width:100px;;
+}
+
+.tableForm td iput{
+	width:150px;
+	text-align: left;
+}
